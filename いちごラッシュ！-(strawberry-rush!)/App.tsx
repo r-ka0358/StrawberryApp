@@ -17,22 +17,6 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    loadRankings();
-        score: entry.score,
-        date: new Date(entry.createdAt).toLocaleDateString('ja-JP'),
-        id: entry.id,
-        playerName: entry.playerName,
-      }));
-      setRanking(formattedRankings);
-    } catch (error) {
-      console.error('Failed to load rankings:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleStart = useCallback((name: string) => {
   const loadRankings = async () => {
     setIsLoading(true);
     try {
@@ -52,6 +36,10 @@ const App: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    loadRankings();
+  }, []);
+
   const handleStart = useCallback((name: string) => {
     setPlayerName(name);
     setScore(0);
@@ -60,7 +48,7 @@ const App: React.FC = () => {
 
   const handleGameOver = useCallback((finalScore: number) => {
     setScore(finalScore);
-  const handleRestart = useCallback(() => {
+    setGameState('gameOver');
 
     // スコアをデータベースに保存
     if (playerName.trim()) {
@@ -72,6 +60,9 @@ const App: React.FC = () => {
       });
     }
   }, [playerName]);
+
+  const handleRestart = useCallback(() => {
+    setGameState('start');
   }, []);
 
   const renderScreen = () => {
@@ -80,11 +71,6 @@ const App: React.FC = () => {
         return <GameScreen playerName={playerName} onGameOver={handleGameOver} />;
       case 'gameOver':
         return <GameOverScreen 
-          score={score} 
-          playerName={playerName}
-          ranking={ranking} 
-          onRestart={handleRestart} 
-        />;
           score={score} 
           playerName={playerName}
           ranking={ranking} 
