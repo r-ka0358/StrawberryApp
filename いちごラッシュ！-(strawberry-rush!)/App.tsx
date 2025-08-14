@@ -53,9 +53,13 @@ const App: React.FC = () => {
       }));
       setRanking(formattedRankings);
     } catch (error) {
+    }
     loadRankings();
+  }
 
   const handleStart = useCallback((name: string) => {
+  }
+  )
   const handleStart = useCallback((name: string) => {
     setPlayerName(name);
     setScore(0);
@@ -64,6 +68,8 @@ const App: React.FC = () => {
 
   const handleGameOver = useCallback((finalScore: number) => {
     setScore(finalScore);
+  }
+  )
   const handleRestart = useCallback(() => {
     setGameState('start');
     // スコアをデータベースに保存
@@ -105,3 +111,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+  )
+}
