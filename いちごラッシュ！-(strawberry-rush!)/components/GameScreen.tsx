@@ -13,4 +13,6 @@
 +      <div className="text-center mb-2">
 +        <span className="text-lg font-bold text-gray-600">{playerName}さん</span>
 +      </div>
-       <div className="flex justify-between items-center mb-6 md:mb-8 text-xl md:text-2xl font-bold">
+  
+  )
+}     <div className="flex justify-between items-center mb-6 md:mb-8 text-xl md:text-2xl font-bold">
