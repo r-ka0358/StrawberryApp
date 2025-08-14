@@ -7,8 +7,11 @@ interface GameOverScreenProps {
     playerName?: string;
   }>;
   playerName: string;
+}
+
 import React from 'react';
-  
+
+const GameOverScreen: React.FC<GameOverScreenProps> = ({ playerName }) => {
   return (
     <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg p-6 md:p-12 text-center flex flex-col items-center">
       <h1 className="text-2xl font-bold text-gray-700 mb-2">{playerName}さん</h1>
@@ -17,4 +20,5 @@ import React from 'react';
     </div>
   );
 };
-      ) : null}
+
+export default GameOverScreen;
